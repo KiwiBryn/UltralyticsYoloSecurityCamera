@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\YoloDotNet\YoloDotNet\YoloDotNet.csproj" />
+    <ProjectReference Include="..\YoloDotNet\YoloDotNet\YoloDotNet.csproj" />
   </ItemGroup>
 
   <ItemGroup>
