@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\YoloSharp\Source\YoloSharp\YoloSharp.csproj" />
+    <ProjectReference Include="..\YoloSharp\Source\YoloSharp\YoloSharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
