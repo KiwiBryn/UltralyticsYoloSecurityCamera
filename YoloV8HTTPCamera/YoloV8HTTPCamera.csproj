@@ -8,9 +8,7 @@
     <UserSecretsId>34082e0d-9991-44ff-ad35-1a8adcdd6c48</UserSecretsId>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>$(DefineConstants);GPURELEASE</DefineConstants>
-  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
@@ -19,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\YoloV8\Source\YoloV8\YoloV8.csproj" />
+    <ProjectReference Include="..\YoloV8\Source\YoloV8\YoloV8.csproj" />
   </ItemGroup>
 
   <ItemGroup>
