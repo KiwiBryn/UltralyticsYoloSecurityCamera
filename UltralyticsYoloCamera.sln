@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{C3E59411-B00C-4913-969F-3250EDE11699}"
+	ProjectSection(SolutionItems) = preProject
+		..\Models\yolo11n-cls.onnx = ..\Models\yolo11n-cls.onnx
+		..\Models\yolo11n-obb.onnx = ..\Models\yolo11n-obb.onnx
+		..\Models\yolo11n-pose.onnx = ..\Models\yolo11n-pose.onnx
+		..\Models\yolo11n-seg.onnx = ..\Models\yolo11n-seg.onnx
+		..\Models\yolo11n.onnx = ..\Models\yolo11n.onnx
+		..\Models\yolov10s.onnx = ..\Models\yolov10s.onnx
+		..\Models\yolov11s-cls.onnx = ..\Models\yolov11s-cls.onnx
+		..\Models\yolov11s-obb.onnx = ..\Models\yolov11s-obb.onnx
+		..\Models\yolov11s-pose.onnx = ..\Models\yolov11s-pose.onnx
+		..\Models\yolov11s-seg.onnx = ..\Models\yolov11s-seg.onnx
+		..\Models\yolov11s.onnx = ..\Models\yolov11s.onnx
+		..\Models\yolov8s-cls.onnx = ..\Models\yolov8s-cls.onnx
+		..\Models\yolov8s-obb.onnx = ..\Models\yolov8s-obb.onnx
+		..\Models\yolov8s-pose.onnx = ..\Models\yolov8s-pose.onnx
+		..\Models\yolov8s-seg.onnx = ..\Models\yolov8s-seg.onnx
+		..\Models\yolov8s.onnx = ..\Models\yolov8s.onnx
+		..\Models\yolov9s.onnx = ..\Models\yolov9s.onnx
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFC80E89-BBEA-4E41-9EA9-7077AC71D5C6}
+	EndGlobalSection
+EndGlobal
