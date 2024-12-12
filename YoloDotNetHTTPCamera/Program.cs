@@ -12,9 +12,7 @@ using SkiaSharp;
 
 using YoloDotNet;
 using YoloDotNet.Enums;
-using YoloDotNet.Extensions;
 using YoloDotNet.Models;
-using static System.Net.Mime.MediaTypeNames;
 
 
 namespace devMobile.IoT.Ultralytics.YoloDotNetCamera
