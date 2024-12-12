@@ -8,7 +8,9 @@ using System.Net;
 
 using Microsoft.Extensions.Configuration;
 
-using Microsoft.ML.OnnxRuntime;
+#if GPURELEASE
+   using Microsoft.ML.OnnxRuntime;
+#endif
 
 using Compunet.YoloV8;
 
