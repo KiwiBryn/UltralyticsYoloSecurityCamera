@@ -5,23 +5,28 @@ VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{C3E59411-B00C-4913-969F-3250EDE11699}"
 	ProjectSection(SolutionItems) = preProject
-		..\Models\yolo11n-cls.onnx = ..\Models\yolo11n-cls.onnx
-		..\Models\yolo11n-obb.onnx = ..\Models\yolo11n-obb.onnx
-		..\Models\yolo11n-pose.onnx = ..\Models\yolo11n-pose.onnx
-		..\Models\yolo11n-seg.onnx = ..\Models\yolo11n-seg.onnx
-		..\Models\yolo11n.onnx = ..\Models\yolo11n.onnx
-		..\Models\yolov10s.onnx = ..\Models\yolov10s.onnx
-		..\Models\yolov11s-cls.onnx = ..\Models\yolov11s-cls.onnx
-		..\Models\yolov11s-obb.onnx = ..\Models\yolov11s-obb.onnx
-		..\Models\yolov11s-pose.onnx = ..\Models\yolov11s-pose.onnx
-		..\Models\yolov11s-seg.onnx = ..\Models\yolov11s-seg.onnx
-		..\Models\yolov11s.onnx = ..\Models\yolov11s.onnx
-		..\Models\yolov8s-cls.onnx = ..\Models\yolov8s-cls.onnx
-		..\Models\yolov8s-obb.onnx = ..\Models\yolov8s-obb.onnx
-		..\Models\yolov8s-pose.onnx = ..\Models\yolov8s-pose.onnx
-		..\Models\yolov8s-seg.onnx = ..\Models\yolov8s-seg.onnx
-		..\Models\yolov8s.onnx = ..\Models\yolov8s.onnx
-		..\Models\yolov9s.onnx = ..\Models\yolov9s.onnx
+		Models\yolo11n-cls.onnx = Models\yolo11n-cls.onnx
+		Models\yolo11n-obb.onnx = Models\yolo11n-obb.onnx
+		Models\yolo11n-pose.onnx = Models\yolo11n-pose.onnx
+		Models\yolo11n-seg.onnx = Models\yolo11n-seg.onnx
+		Models\yolo11n.onnx = Models\yolo11n.onnx
+		Models\yolov10s.onnx = Models\yolov10s.onnx
+		Models\yolov11s-cls.onnx = Models\yolov11s-cls.onnx
+		Models\yolov11s-obb.onnx = Models\yolov11s-obb.onnx
+		Models\yolov11s-pose.onnx = Models\yolov11s-pose.onnx
+		Models\yolov11s-seg.onnx = Models\yolov11s-seg.onnx
+		Models\yolov11s.onnx = Models\yolov11s.onnx
+		Models\yolov8n-cls-uint8.onnx = Models\yolov8n-cls-uint8.onnx
+		Models\yolov8n-pose-uint8.onnx = Models\yolov8n-pose-uint8.onnx
+		Models\yolov8n-seg-uint8.onnx = Models\yolov8n-seg-uint8.onnx
+		Models\yolov8n-uint8.onnx = Models\yolov8n-uint8.onnx
+		Models\yolov8n.onnx = Models\yolov8n.onnx
+		Models\yolov8s-cls.onnx = Models\yolov8s-cls.onnx
+		Models\yolov8s-obb.onnx = Models\yolov8s-obb.onnx
+		Models\yolov8s-pose.onnx = Models\yolov8s-pose.onnx
+		Models\yolov8s-seg.onnx = Models\yolov8s-seg.onnx
+		Models\yolov8s.onnx = Models\yolov8s.onnx
+		Models\yolov9s.onnx = Models\yolov9s.onnx
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNet", "YoloDotNet\YoloDotNet\YoloDotNet.csproj", "{BA90D37B-2D46-470D-8728-E0CD903584B0}"
@@ -35,6 +40,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloV8", "YoloV8\Source\YoloV8\YoloV8.csproj", "{ED9BD016-8083-421E-A308-0ED51E5EF40C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloV8HTTPCamera", "YoloV8HTTPCamera\YoloV8HTTPCamera.csproj", "{9F333863-A7CB-4F8B-B505-2E069E674037}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloV8Lite", "YoloV8Lite\Source\YoloV8\YoloV8Lite.csproj", "{F255D9CF-2EB2-4975-8518-5968EA853DBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNetLite", "YoloDotNetLite\YoloDotNet\YoloDotNetLite.csproj", "{CC098482-0B91-4BF2-B43F-C31BEF617EF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +75,14 @@ Global
 		{9F333863-A7CB-4F8B-B505-2E069E674037}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F333863-A7CB-4F8B-B505-2E069E674037}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F333863-A7CB-4F8B-B505-2E069E674037}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F255D9CF-2EB2-4975-8518-5968EA853DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F255D9CF-2EB2-4975-8518-5968EA853DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F255D9CF-2EB2-4975-8518-5968EA853DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F255D9CF-2EB2-4975-8518-5968EA853DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC098482-0B91-4BF2-B43F-C31BEF617EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC098482-0B91-4BF2-B43F-C31BEF617EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC098482-0B91-4BF2-B43F-C31BEF617EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC098482-0B91-4BF2-B43F-C31BEF617EF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
