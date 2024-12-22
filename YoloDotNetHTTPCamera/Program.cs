@@ -12,6 +12,7 @@ using SkiaSharp;
 
 using YoloDotNet;
 using YoloDotNet.Enums;
+using YoloDotNet.Extensions;
 using YoloDotNet.Models;
 
 
@@ -47,26 +48,30 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetCamera
             NetworkCredential networkCredential = new(_applicationSettings.CameraUserName, _applicationSettings.CameraUserPassword);
 
             using (_httpClient = new HttpClient(new HttpClientHandler { PreAuthenticate = true, Credentials = networkCredential }))
-            using (_yolo = new Yolo(new YoloOptions()
             {
-               OnnxModel = _applicationSettings.ModelPath,
-               Cuda = false,
-               PrimeGpu = false,
-               ModelType = ModelType.ObjectDetection,
-            }))
-            {
-               Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model load done");
-               Console.WriteLine();
+               Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model load start");
 
-               using (Timer imageUpdatetimer = new(ImageUpdateTimerCallback, null, _applicationSettings.ImageTimerDue, _applicationSettings.ImageTimerPeriod))
+               using (_yolo = new Yolo(new YoloOptions()
                {
-                  try
+                  OnnxModel = _applicationSettings.ModelPath,
+                  Cuda = false,
+                  PrimeGpu = false,
+                  ModelType = ModelType.ObjectDetection,
+               }))
+               {
+                  Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model load done");
+                  Console.WriteLine();
+
+                  using (Timer imageUpdatetimer = new(ImageUpdateTimerCallback, null, _applicationSettings.ImageTimerDue, _applicationSettings.ImageTimerPeriod))
                   {
-                     await Task.Delay(Timeout.Infinite);
-                  }
-                  catch (TaskCanceledException)
-                  {
-                     Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} Application shutown requested");
+                     try
+                     {
+                        await Task.Delay(Timeout.Infinite);
+                     }
+                     catch (TaskCanceledException)
+                     {
+                        Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} Application shutown requested");
+                     }
                   }
                }
             }
@@ -92,29 +97,56 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetCamera
             Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Security Camera Image download start");
 
             using (Stream cameraStream = await _httpClient.GetStreamAsync(_applicationSettings.CameraUrl))
-            using (Stream fileStream = File.Open(_applicationSettings.ImageInputPath, FileMode.Create))
             {
-               await cameraStream.CopyToAsync(fileStream);
-            }
+               SKImage image;
 
-            Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss:fff} Security Camera Image download done");
-
-            using (var image = SKImage.FromEncodedData(_applicationSettings.ImageInputPath))
-            {
-               Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model detect start");
-
-               var predictions = _yolo.RunObjectDetection(image);
-
-               Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model detect done");
-               Console.WriteLine();
-
-               foreach (var predicition in predictions)
+               if (_applicationSettings.CameraImageSave)
                {
-                  Console.WriteLine($"  Class {predicition.Label.Name} {(predicition.Confidence * 100.0):f1}% X:{predicition.BoundingBox.Location.X} Y:{predicition.BoundingBox.Location.Y} Width:{predicition.BoundingBox.Width} Height:{predicition.BoundingBox.Height}");
+                  using (Stream fileStream = File.Open(_applicationSettings.CameraImagePath, FileMode.Create))
+                  {
+                     await cameraStream.CopyToAsync(fileStream);
+                  }
+                  image = SKImage.FromEncodedData(_applicationSettings.CameraImagePath);
+
+                  Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss:fff} Security Camera Image download and save: {_applicationSettings.CameraImagePath}");
                }
+               else
+               {
+                  image = SKImage.FromEncodedData(cameraStream);
+
+                  Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss:fff} Security Camera Image download done");
+               }
+
                Console.WriteLine();
 
-               Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Plot and save : {_applicationSettings.ImageOutputPath}");
+               using (image)
+               {
+                  Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model detect start");
+
+                  var predictions = _yolo.RunObjectDetection(image);
+
+                  Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model detect done");
+
+                  Console.WriteLine();
+
+                  Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Predictions:{predictions.Count}");
+
+                  foreach (var predicition in predictions)
+                  {
+                     Console.WriteLine($"  Class {predicition.Label.Name} {(predicition.Confidence * 100.0):f1}% X:{predicition.BoundingBox.Location.X} Y:{predicition.BoundingBox.Location.Y} Width:{predicition.BoundingBox.Width} Height:{predicition.BoundingBox.Height}");
+                  }
+                  Console.WriteLine();
+
+                  if (_applicationSettings.MarkedUpImageSave)
+                  {
+                     Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Plot and save: {_applicationSettings.MarkedUpImagePath}");
+
+                     using (var markedUpImage = image.Draw(predictions))
+                     {
+                        markedUpImage.Save(_applicationSettings.MarkedUpImagePath, SKEncodedImageFormat.Jpeg);
+                     }
+                  }
+               }
             }
          }
          catch (Exception ex)
