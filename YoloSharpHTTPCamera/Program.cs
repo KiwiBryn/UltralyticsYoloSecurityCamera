@@ -25,7 +25,7 @@ namespace devMobile.IoT.Ultralytics.YoloSharpCamera
 
       static async Task Main()
       {
-         Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} SecurityCameraImage starting");
+         Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} YoloSharpHTTPCamera starting");
 #if RELEASE
          Console.WriteLine("RELEASE");
 #else

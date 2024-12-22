@@ -30,7 +30,7 @@ namespace devMobile.IoT.Ultralytics.YoloV8Camera
 
       static async Task Main()
       {
-         Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} SecurityCameraImage starting");
+         Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} YoloV8HTTPCamera starting");
 #if RELEASE
          Console.WriteLine("RELEASE");
 #else
