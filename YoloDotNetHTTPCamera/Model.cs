@@ -15,9 +15,13 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetCamera.Model
       public required string CameraUserName { get; set; }
       public required string CameraUserPassword { get; set; }
 
-      public required string ImageInputPath { get; set; }
+      public required bool CameraImageSave { get; set; } = false;
 
-      public required string ImageOutputPath { get; set; }
+      public required string CameraImagePath { get; set; }
+
+      public required bool MarkedUpImageSave { get; set; } = false;
+
+      public required string MarkedUpImagePath { get; set; }
 
       public required string ModelPath { get; set; }
    }
