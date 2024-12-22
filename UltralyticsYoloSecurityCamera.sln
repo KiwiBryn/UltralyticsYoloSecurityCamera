@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloV8", "YoloV8\Source\Yol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloV8HTTPCamera", "YoloV8HTTPCamera\YoloV8HTTPCamera.csproj", "{9F333863-A7CB-4F8B-B505-2E069E674037}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNetLite", "YoloDotNetLite\YoloDotNet\YoloDotNetLite.csproj", "{CC098482-0B91-4BF2-B43F-C31BEF617EF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNetLite", "YoloDotNetLite\YoloDotNet\YoloDotNetLite.csproj", "{9483000F-E75D-4003-AD02-B078DCC866D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,10 +73,10 @@ Global
 		{9F333863-A7CB-4F8B-B505-2E069E674037}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F333863-A7CB-4F8B-B505-2E069E674037}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F333863-A7CB-4F8B-B505-2E069E674037}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC098482-0B91-4BF2-B43F-C31BEF617EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC098482-0B91-4BF2-B43F-C31BEF617EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC098482-0B91-4BF2-B43F-C31BEF617EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC098482-0B91-4BF2-B43F-C31BEF617EF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9483000F-E75D-4003-AD02-B078DCC866D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9483000F-E75D-4003-AD02-B078DCC866D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9483000F-E75D-4003-AD02-B078DCC866D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9483000F-E75D-4003-AD02-B078DCC866D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
