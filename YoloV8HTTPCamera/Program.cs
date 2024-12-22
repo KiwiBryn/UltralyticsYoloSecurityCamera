@@ -42,6 +42,7 @@ namespace devMobile.IoT.Ultralytics.YoloV8Camera
             // load the app settings into configuration
             var configuration = new ConfigurationBuilder()
                  .AddJsonFile("appsettings.json", false, true)
+                 .AddUserSecrets<Program>()
             .Build();
 
             _applicationSettings = configuration.GetSection("ApplicationSettings").Get<Model.ApplicationSettings>();
@@ -212,11 +213,14 @@ namespace devMobile.IoT.Ultralytics.YoloV8Camera
                var predictions = await _predictor.DetectAsync(image);
 
                Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model detect done");
+
                Console.WriteLine();
+
+               Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Predictions:{predictions.Boxes.Count()}");
 
                foreach (var prediction in predictions.Boxes)
                {
-                  Console.WriteLine($" {prediction.Confidence * 100.0:f1}% X:{prediction.Bounds.X} Y:{prediction.Bounds.Y} Width:{prediction.Bounds.Width} Height:{prediction.Bounds.Height}");
+                  Console.WriteLine($"  Class:{prediction.Class.Name} {prediction.Confidence * 100.0:f1}% X:{prediction.Bounds.X} Y:{prediction.Bounds.Y} Width:{prediction.Bounds.Width} Height:{prediction.Bounds.Height}");
 
                }
                Console.WriteLine();
