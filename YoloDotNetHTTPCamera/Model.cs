@@ -4,6 +4,8 @@
 // https://www.gnu.org/licenses/#AGPL
 //
 //---------------------------------------------------------------------------------
+using Microsoft.ML.OnnxRuntime;
+
 namespace devMobile.IoT.Ultralytics.YoloDotNetCamera.Model
 {
    public class ApplicationSettings
@@ -24,5 +26,9 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetCamera.Model
       public required string MarkedUpImagePath { get; set; }
 
       public required string ModelPath { get; set; }
+
+      public required bool CUDA { get; set; } = false;
+      public required int GPUId { get; set; } = 0;
+      public required bool PrimeGPU { get; set; } = false;
    }
 }

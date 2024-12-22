@@ -50,13 +50,16 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetCamera
 
             using (_httpClient = new HttpClient(new HttpClientHandler { PreAuthenticate = true, Credentials = networkCredential }))
             {
+               Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} CUDA:{_applicationSettings.CUDA} PrimeGPU:{_applicationSettings.PrimeGPU}");
+
                Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model load start");
 
                using (_yolo = new Yolo(new YoloOptions()
                {
                   OnnxModel = _applicationSettings.ModelPath,
-                  Cuda = false,
-                  PrimeGpu = false,
+                  Cuda = _applicationSettings.CUDA,
+                  GpuId = _applicationSettings.GPUId,
+                  PrimeGpu = _applicationSettings.PrimeGPU,
                   ModelType = ModelType.ObjectDetection,
                }))
                {
@@ -79,7 +82,9 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetCamera
          }
          catch (Exception ex)
          {
-            Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} Application shutown failure {ex.Message}", ex);
+            Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} Application failure {ex.Message}", ex);
+            Console.WriteLine("Press enter to exit");
+            Console.ReadLine();
          }
       }
    
