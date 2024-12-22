@@ -12,6 +12,7 @@ using SkiaSharp;
 
 using YoloDotNet;
 using YoloDotNet.Enums;
+using YoloDotNet.Extensions;
 using YoloDotNet.Models;
 
 
@@ -47,26 +48,30 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetCamera
             NetworkCredential networkCredential = new(_applicationSettings.CameraUserName, _applicationSettings.CameraUserPassword);
 
             using (_httpClient = new HttpClient(new HttpClientHandler { PreAuthenticate = true, Credentials = networkCredential }))
-            using (_yolo = new Yolo(new YoloOptions()
             {
-               OnnxModel = _applicationSettings.ModelPath,
-               Cuda = false,
-               PrimeGpu = false,
-               ModelType = ModelType.ObjectDetection,
-            }))
-            {
-               Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model load done");
-               Console.WriteLine();
+               Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model load start");
 
-               using (Timer imageUpdatetimer = new(ImageUpdateTimerCallback, null, _applicationSettings.ImageTimerDue, _applicationSettings.ImageTimerPeriod))
+               using (_yolo = new Yolo(new YoloOptions()
                {
-                  try
+                  OnnxModel = _applicationSettings.ModelPath,
+                  Cuda = false,
+                  PrimeGpu = false,
+                  ModelType = ModelType.ObjectDetection,
+               }))
+               {
+                  Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} YoloV8 Model load done");
+                  Console.WriteLine();
+
+                  using (Timer imageUpdatetimer = new(ImageUpdateTimerCallback, null, _applicationSettings.ImageTimerDue, _applicationSettings.ImageTimerPeriod))
                   {
-                     await Task.Delay(Timeout.Infinite);
-                  }
-                  catch (TaskCanceledException)
-                  {
-                     Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} Application shutown requested");
+                     try
+                     {
+                        await Task.Delay(Timeout.Infinite);
+                     }
+                     catch (TaskCanceledException)
+                     {
+                        Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} Application shutown requested");
+                     }
                   }
                }
             }
@@ -115,6 +120,11 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetCamera
                Console.WriteLine();
 
                Console.WriteLine($" {DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Plot and save : {_applicationSettings.ImageOutputPath}");
+
+               using (var output = image.Draw(predictions))
+               {
+                  output.Save(_applicationSettings.ImageOutputPath, SKEncodedImageFormat.Jpeg);
+               }
             }
          }
          catch (Exception ex)
