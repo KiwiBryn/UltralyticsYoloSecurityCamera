@@ -16,6 +16,7 @@ using SixLabors.ImageSharp;
 
 namespace devMobile.IoT.Ultralytics.YoloSharpCamera
 {
+   [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "I prefer the old style")]
    class Program
    {
       private static YoloPredictor? _predictor;

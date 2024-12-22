@@ -18,6 +18,7 @@ using YoloDotNet.Models;
 
 namespace devMobile.IoT.Ultralytics.YoloDotNetCamera
 {
+   [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "I prefer the old style")]
    class Program
    {
       private static Model.ApplicationSettings? _applicationSettings;
