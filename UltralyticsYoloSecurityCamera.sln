@@ -29,8 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{C3E594
 		Models\yolov9s.onnx = Models\yolov9s.onnx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNet", "YoloDotNet\YoloDotNet\YoloDotNet.csproj", "{BA90D37B-2D46-470D-8728-E0CD903584B0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNetHTTPCamera", "YoloDotNetHTTPCamera\YoloDotNetHTTPCamera.csproj", "{17B89F1C-576B-445B-B531-08C323992AD2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloSharp", "YoloSharp\Source\YoloSharp\YoloSharp.csproj", "{90E7E11F-6CFB-4344-8ABA-B0F56267397C}"
@@ -43,16 +41,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloV8HTTPCamera", "YoloV8H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNetLite", "YoloDotNetLite\YoloDotNet\YoloDotNetLite.csproj", "{9483000F-E75D-4003-AD02-B078DCC866D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNet", "YoloDotNet\YoloDotNet\YoloDotNet.csproj", "{D4CC0DE0-6857-41F8-8701-712E0AB2C5FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BA90D37B-2D46-470D-8728-E0CD903584B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA90D37B-2D46-470D-8728-E0CD903584B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA90D37B-2D46-470D-8728-E0CD903584B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA90D37B-2D46-470D-8728-E0CD903584B0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17B89F1C-576B-445B-B531-08C323992AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17B89F1C-576B-445B-B531-08C323992AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17B89F1C-576B-445B-B531-08C323992AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,6 +73,10 @@ Global
 		{9483000F-E75D-4003-AD02-B078DCC866D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9483000F-E75D-4003-AD02-B078DCC866D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9483000F-E75D-4003-AD02-B078DCC866D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4CC0DE0-6857-41F8-8701-712E0AB2C5FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4CC0DE0-6857-41F8-8701-712E0AB2C5FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4CC0DE0-6857-41F8-8701-712E0AB2C5FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4CC0DE0-6857-41F8-8701-712E0AB2C5FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
