@@ -39,9 +39,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloV8", "YoloV8\Source\Yol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloV8HTTPCamera", "YoloV8HTTPCamera\YoloV8HTTPCamera.csproj", "{9F333863-A7CB-4F8B-B505-2E069E674037}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNet", "YoloDotNet\YoloDotNet\YoloDotNet.csproj", "{D4CC0DE0-6857-41F8-8701-712E0AB2C5FD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNetLite", "YoloDotNetLite\YoloDotNet\YoloDotNetLite.csproj", "{D7B3CF2C-601C-4442-A5D8-EABC691A3FAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNet", "YoloDotNet\YoloDotNet\YoloDotNet.csproj", "{F4199349-0945-4653-99ED-FD244F6F4806}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,14 +69,14 @@ Global
 		{9F333863-A7CB-4F8B-B505-2E069E674037}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F333863-A7CB-4F8B-B505-2E069E674037}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F333863-A7CB-4F8B-B505-2E069E674037}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D4CC0DE0-6857-41F8-8701-712E0AB2C5FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4CC0DE0-6857-41F8-8701-712E0AB2C5FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4CC0DE0-6857-41F8-8701-712E0AB2C5FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4CC0DE0-6857-41F8-8701-712E0AB2C5FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7B3CF2C-601C-4442-A5D8-EABC691A3FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7B3CF2C-601C-4442-A5D8-EABC691A3FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7B3CF2C-601C-4442-A5D8-EABC691A3FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7B3CF2C-601C-4442-A5D8-EABC691A3FAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4199349-0945-4653-99ED-FD244F6F4806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4199349-0945-4653-99ED-FD244F6F4806}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4199349-0945-4653-99ED-FD244F6F4806}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4199349-0945-4653-99ED-FD244F6F4806}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
