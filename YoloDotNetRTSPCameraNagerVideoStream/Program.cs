@@ -14,6 +14,7 @@ using SkiaSharp;
 
 using YoloDotNet;
 using YoloDotNet.Enums;
+using YoloDotNet.Extensions;
 using YoloDotNet.Models;
 
 
@@ -76,11 +77,9 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
          }
          finally
          {
-            _yolo?.Dispose();
+            Console.WriteLine("Press ENTER to exit");
+            Console.ReadLine();
          }
-
-         Console.WriteLine("Press ENTER to exit");
-         Console.ReadLine();
       }
 
       private static async Task StartStreamProcessingAsync(InputSource inputSource, CancellationToken cancellationToken = default)
@@ -122,11 +121,29 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
             FrameCount += 1;
          }
 
-         var predictions = _yolo.RunObjectDetection(SKImage.FromEncodedData(imageData));
+         if (_applicationSettings.Inference)
+         {
+            using (var image = SKImage.FromEncodedData(imageData))
+            {
+               var predictions = _yolo.RunObjectDetection(image);
 
-         Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Predictions:{predictions.Count} Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds/FrameCount):0.0} mSec");
+               Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Predictions:{predictions.Count} Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds / FrameCount):0.0} mSec");
 
-         File.WriteAllBytes($"{_applicationSettings.ImageFilepathLocal}\\{currentTimeUtc.Ticks}.png", imageData);
+               if (_applicationSettings.MarkUpImages)
+               {
+                  using (var markedUpImage = image.Draw(predictions))
+                  {
+                     markedUpImage.Save($"{_applicationSettings.ImageFilepathLocal}\\{currentTimeUtc.Ticks}.png", SKEncodedImageFormat.Png);
+                  }
+               }
+            }
+         }
+         else
+         {
+            Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds / FrameCount):0.0} mSec");
+
+            File.WriteAllBytes($"{_applicationSettings.ImageFilepathLocal}\\{currentTimeUtc.Ticks}.png", imageData);
+         }
       }
 
 #if FFMPEG_INFO_DISPLAY
