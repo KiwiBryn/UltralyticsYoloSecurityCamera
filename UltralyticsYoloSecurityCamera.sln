@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNetPerformance", "Yo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNetRTSPCameraNagerVideoStream", "YoloDotNetRTSPCameraNagerVideoStream\YoloDotNetRTSPCameraNagerVideoStream.csproj", "{E0E54D38-B06C-440B-878D-C6DBC1C07909}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTSPCameraSharpRTSPClient", "RTSPCameraSharpRTSPClient\RTSPCameraSharpRTSPClient.csproj", "{626A9856-5AD2-4532-98FC-1BA7DFB34222}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{E0E54D38-B06C-440B-878D-C6DBC1C07909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0E54D38-B06C-440B-878D-C6DBC1C07909}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0E54D38-B06C-440B-878D-C6DBC1C07909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{626A9856-5AD2-4532-98FC-1BA7DFB34222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{626A9856-5AD2-4532-98FC-1BA7DFB34222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{626A9856-5AD2-4532-98FC-1BA7DFB34222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{626A9856-5AD2-4532-98FC-1BA7DFB34222}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
