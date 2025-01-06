@@ -6,6 +6,8 @@
 // Big thanks https://github.com/nager/Nager.VideoStream
 //
 //---------------------------------------------------------------------------------
+using System.Diagnostics;
+
 using Microsoft.Extensions.Configuration;
 
 using Nager.VideoStream;
@@ -91,6 +93,8 @@ namespace devMobile.IoT.RTSPCameraNagerVideoStream
 
       private static void NewImageReceived(byte[] imageData)
       {
+         Debug.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} NewImageReceived");
+
          File.WriteAllBytes( Path.Combine(_applicationSettings.ImageFilepathLocal, $"{DateTime.UtcNow:yyyyMMdd-HHmmss.fff}.png"), imageData);
       }
 
