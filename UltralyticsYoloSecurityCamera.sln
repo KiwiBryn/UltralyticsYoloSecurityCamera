@@ -45,7 +45,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNetPerformance", "Yo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloDotNetRTSPCameraNagerVideoStream", "YoloDotNetRTSPCameraNagerVideoStream\YoloDotNetRTSPCameraNagerVideoStream.csproj", "{E0E54D38-B06C-440B-878D-C6DBC1C07909}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTSPCameraSharpRTSP", "RTSPCameraSharpRTSP\RTSPCameraSharpRTSP.csproj", "{1E4C6B17-600B-4879-8A68-AFD58B0ED807}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTSPCameraSharpRTSPClient", "RTSPCameraSharpRTSPClient\RTSPCameraSharpRTSPClient.csproj", "{1E4C6B17-600B-4879-8A68-AFD58B0ED807}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
