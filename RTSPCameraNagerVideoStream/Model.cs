@@ -11,6 +11,8 @@ namespace devMobile.IoT.RTSPCameraNagerVideoStream.Model
 	{
       public string RtspCameraUrl { get; set; } = "";
 
+      public string FFMpegPath { get; set; } = "ffmpeg.exe";
+
       public string ImageFilepathLocal { get; set; } = "Images";
    }
 }

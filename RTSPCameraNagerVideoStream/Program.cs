@@ -67,7 +67,7 @@ namespace devMobile.IoT.RTSPCameraNagerVideoStream
          Console.WriteLine("Start Stream Processing");
          try
          {
-            var client = new VideoStreamClient();
+            var client = new VideoStreamClient(_applicationSettings.FFMpegPath);
 
             client.NewImageReceived += NewImageReceived;
 #if FFMPEG_INFO_DISPLAY
