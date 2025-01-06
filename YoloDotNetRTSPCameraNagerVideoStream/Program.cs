@@ -6,6 +6,8 @@
 // Thanks https://github.com/nager/Nager.VideoStream
 //
 //---------------------------------------------------------------------------------
+using System.Diagnostics;
+
 using Microsoft.Extensions.Configuration;
 
 using Nager.VideoStream;
@@ -127,7 +129,7 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
             {
                var predictions = _yolo.RunPoseEstimation(image);
 
-               Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Predictions:{predictions.Count} Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds / FrameCount):0.0} mSec");
+               Debug.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Predictions:{predictions.Count} Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds / FrameCount):0.0} mSec");
 
                if (_applicationSettings.MarkUpImages)
                {
@@ -140,9 +142,9 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
          }
          else
          {
-            Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds / FrameCount):0.0} mSec");
+            Debug.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds / FrameCount):0.0} mSec");
 
-            File.WriteAllBytes($"{_applicationSettings.ImageFilepathLocal}\\{currentTimeUtc.Ticks}.png", imageData);
+            File.WriteAllBytes(Path.Combine(_applicationSettings.ImageFilepathLocal, $"{DateTime.UtcNow:yyyyMMdd-HHmmss.fff}.png"), imageData);
          }
       }
 
