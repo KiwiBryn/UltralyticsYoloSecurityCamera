@@ -3,10 +3,10 @@
 //
 // https://mit-license.org/
 //
-// Thanks https://github.com/ngraziano/SharpRTSP
+// Big thanks https://github.com/ngraziano/SharpRTSP
 //
 //---------------------------------------------------------------------------------
-namespace RTSPCameraSharpRTSP
+namespace RTSPCameraSharpRTSPClient
 {
    internal class Program
    {
