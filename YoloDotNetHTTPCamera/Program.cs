@@ -83,9 +83,10 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetCamera
          catch (Exception ex)
          {
             Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss} Application failure {ex.Message}", ex);
-            Console.WriteLine("Press enter to exit");
-            Console.ReadLine();
          }
+
+         Console.WriteLine("Press enter to exit");
+         Console.ReadLine();
       }
    
 

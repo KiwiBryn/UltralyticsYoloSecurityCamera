@@ -6,6 +6,8 @@
 // Thanks https://github.com/nager/Nager.VideoStream
 //
 //---------------------------------------------------------------------------------
+using System.Diagnostics;
+
 using Microsoft.Extensions.Configuration;
 
 using Nager.VideoStream;
@@ -14,6 +16,7 @@ using SkiaSharp;
 
 using YoloDotNet;
 using YoloDotNet.Enums;
+using YoloDotNet.Extensions;
 using YoloDotNet.Models;
 
 
@@ -51,8 +54,8 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
                Cuda = _applicationSettings.CUDA,
                GpuId = _applicationSettings.GPUId,
                PrimeGpu = _applicationSettings.PrimeGPU,
-               ModelType = ModelType.ObjectDetection,
-            }); 
+               ModelType = ModelType.PoseEstimation
+            });
 
             if (!Directory.Exists(_applicationSettings.ImageFilepathLocal))
             {
@@ -76,11 +79,9 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
          }
          finally
          {
-            _yolo?.Dispose();
+            Console.WriteLine("Press ENTER to exit");
+            Console.ReadLine();
          }
-
-         Console.WriteLine("Press ENTER to exit");
-         Console.ReadLine();
       }
 
       private static async Task StartStreamProcessingAsync(InputSource inputSource, CancellationToken cancellationToken = default)
@@ -88,15 +89,15 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
          Console.WriteLine("Start Stream Processing");
          try
          {
-            var client = new VideoStreamClient();
+            var client = new VideoStreamClient(_applicationSettings.FFMpegPath);
 
-            client.NewImageReceived += NewImageReceived;
+            client.NewImageReceived += NewImageReceivedPose;
 #if FFMPEG_INFO_DISPLAY
             client.FFmpegInfoReceived += FFmpegInfoReceived;
 #endif
             await client.StartFrameReaderAsync(inputSource, OutputImageFormat.Png, cancellationToken: cancellationToken);
 
-            client.NewImageReceived -= NewImageReceived;
+            client.NewImageReceived -= NewImageReceivedPose;
 #if FFMPEG_INFO_DISPLAY
             client.FFmpegInfoReceived -= FFmpegInfoReceived;
 #endif
@@ -108,7 +109,7 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
          }
       }
 
-      private static void NewImageReceived(byte[] imageData)
+      private static void NewImageReceivedPose(byte[] imageData)
       {
          DateTime currentTimeUtc = DateTime.UtcNow;
 
@@ -122,11 +123,29 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
             FrameCount += 1;
          }
 
-         var predictions = _yolo.RunObjectDetection(SKImage.FromEncodedData(imageData));
+         if (_applicationSettings.Inference)
+         {
+            using (var image = SKImage.FromEncodedData(imageData))
+            {
+               var predictions = _yolo.RunPoseEstimation(image);
 
-         Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Predictions:{predictions.Count} Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds/FrameCount):0.0} mSec");
+               Debug.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Predictions:{predictions.Count} Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds / FrameCount):0.0} mSec");
 
-         File.WriteAllBytes($"{_applicationSettings.ImageFilepathLocal}\\{currentTimeUtc.Ticks}.png", imageData);
+               if (_applicationSettings.MarkUpImages)
+               {
+                  using (var markedUpImage = image.Draw(predictions, new KeyPointOptions()))
+                  {
+                     markedUpImage.Save($"{_applicationSettings.ImageFilepathLocal}\\{currentTimeUtc.Ticks}.jpg", SKEncodedImageFormat.Jpeg, quality:20);
+                  }
+               }
+            }
+         }
+         else
+         {
+            Debug.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds / FrameCount):0.0} mSec");
+
+            File.WriteAllBytes(Path.Combine(_applicationSettings.ImageFilepathLocal, $"{DateTime.UtcNow:yyyyMMdd-HHmmss.fff}.png"), imageData);
+         }
       }
 
 #if FFMPEG_INFO_DISPLAY
