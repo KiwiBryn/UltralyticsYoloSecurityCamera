@@ -48,8 +48,8 @@ namespace devMobile.IoT.RTSPCameraSharpRTSP
          bool usePlayback = false;
          // string url = "rtsp://192.168.3.72/ProfileG/Recording-1/recording/play.smp";
 
-         string username = "Windermere105A";
-         string password = "m74!IGcq10Ja%&c";
+         string username = "";
+         string password = "";
          // Axis Tests
          //String url = "rtsp://192.168.1.125/onvif-media/media.amp?profile=quality_h264";
          //String url = "rtsp://user:password@192.168.1.102/onvif-media/media.amp?profile=quality_h264";
@@ -79,7 +79,6 @@ namespace devMobile.IoT.RTSPCameraSharpRTSP
          //string url = "rtsp://127.0.0.1/screenlive";
          //string url = "http://127.0.0.1:8044/screenlive";
 
-         //string url = "rtsp://Windermere105A:m74!IGcq10Ja%&c@10.0.0.28/Streaming/Channels/101";
          string url = "rtsp://10.0.0.28/Streaming/Channels/101";
 
          // MJPEG Tests (Payload 26)
