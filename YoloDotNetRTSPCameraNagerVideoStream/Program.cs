@@ -51,10 +51,13 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
             _yolo = new Yolo(new YoloOptions()
             {
                OnnxModel = _applicationSettings.ModelPath,
-               Cuda = _applicationSettings.CUDA,
-               GpuId = _applicationSettings.GPUId,
-               PrimeGpu = _applicationSettings.PrimeGPU,
-               ModelType = ModelType.PoseEstimation
+               // TODO: This will need fixing
+               //ExecutionProvider = _applicationSettings.ExecutionProvider,
+               //Cuda = _applicationSettings.CUDA,
+               //GpuId = _applicationSettings.GPUId,
+               //PrimeGpu = _applicationSettings.PrimeGPU,
+               //ModelType = ModelType.PoseEstimation
+
             });
 
             if (!Directory.Exists(_applicationSettings.ImageFilepathLocal))
@@ -113,6 +116,9 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
       {
          DateTime currentTimeUtc = DateTime.UtcNow;
 
+         Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} New image received, bytes:{imageData.Length}");
+
+
          TimeSpan timeSinceLastFrame = currentTimeUtc - FrameLastUtc;
 
          FrameLastUtc = currentTimeUtc;
@@ -129,11 +135,26 @@ namespace devMobile.IoT.Ultralytics.YoloDotNetRtspCamera.NagerVideoStream
             {
                var predictions = _yolo.RunPoseEstimation(image);
 
-               Debug.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Predictions:{predictions.Count} Inter frame:{timeSinceLastFrame.TotalMilliseconds:0.0} mSec Average:{(TimeSinceLastFrameAverage.TotalMilliseconds / FrameCount):0.0} mSec");
+               Debug.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss.fff} Image received - Predictions:{predictions.Count}");
+
+               foreach (var box in predictions)
+               {
+                  if (box.Confidence > 0.7)
+                  {
+                     Console.WriteLine($" Class {box.Label} {(box.Confidence * 100.0):f1}% X:{box.BoundingBox.Left} Y:{box.BoundingBox.Top} Width:{box.BoundingBox.Width} Height:{box.BoundingBox.Height}");
+
+                     foreach (var keypoint in box.KeyPoints)
+                     {
+                        Console.WriteLine($" {(keypoint.Confidence * 100.0):f1}% X:{keypoint.X} Y:{keypoint.Y}");
+                     }
+                  }
+               }
+
+               Console.WriteLine($"{DateTime.UtcNow:yy-MM-dd HH:mm:ss:fff} YoloV8 Image processing done");
 
                if (_applicationSettings.MarkUpImages)
                {
-                  using (var markedUpImage = image.Draw(predictions, new KeyPointOptions()))
+                  using (var markedUpImage = image.Draw(predictions))//,  new KeyPointOptions()))
                   {
                      markedUpImage.Save($"{_applicationSettings.ImageFilepathLocal}\\{currentTimeUtc.Ticks}.jpg", SKEncodedImageFormat.Jpeg, quality:20);
                   }
